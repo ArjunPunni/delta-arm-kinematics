@@ -1,0 +1,36 @@
+#include <Servo.h> 
+#define pA 110
+#define t1 42
+#define t2 42
+#define t3 42 //t1,t2,t3 are angular(so range should be within 0-180)
+
+Servo servo1; // servo objects representing the MG 996R servo
+Servo servo2;
+Servo servo3; 
+
+void setup() {
+  servo1.attach(3);
+  servo2.attach(5);
+  servo3.attach(6);
+  servo1.write(pA); // move arm parallel to xy-plane
+  servo2.write(pA);
+  servo3.write(pA);
+}
+
+void loop() {
+  servo1.write(t1); // move MG996R's shaft to angle t1,t2,t3
+  delay(1000);
+  servo2.write(t2);
+  delay(1000);
+  servo3.write(t3);
+  delay(1000);
+  servo1.write(pA); // move arm back to parallel to xy-plane
+  delay(1000);
+  servo2.write(pA);
+  delay(1000);
+  servo3.write(pA);
+  delay(1000);
+  servo1.detach();
+  servo2.detach();
+  servo3.detach();
+}
